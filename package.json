@@ -1,6 +1,6 @@
 {
   "name": "expand-range",
-  "description": "Expand a range of numbers.",
+  "description": "Expand a range of numbers or letters, uppercase or lowercase. Super fast, see the benchmarks.",
   "version": "0.1.0",
   "homepage": "https://github.com/jonschlinkert/expand-range",
   "author": {
@@ -30,25 +30,30 @@
   "devDependencies": {
     "benchmarked": "^0.1.1",
     "brace-expansion": "0.0.0",
-    "digits": "^0.1.4",
-    "lodash": "^2.4.1",
-    "minimatch": "^1.0.0",
     "mocha": "*",
-    "repeat-string": "^0.2.2",
     "should": "^4.1.0",
     "verb": ">= 0.2.6",
     "verb-tag-jscomments": ">= 0.2.0"
   },
   "keywords": [
-    "docs",
-    "documentation",
-    "generate",
-    "generator",
-    "markdown",
-    "templates",
-    "verb"
+    "alpha",
+    "alphabetical",
+    "bash",
+    "brace",
+    "expand",
+    "expansion",
+    "glob",
+    "match",
+    "matches",
+    "matching",
+    "number",
+    "numerical",
+    "range",
+    "ranges",
+    "sh"
   ],
   "dependencies": {
-    "is-number": "^0.1.1"
+    "is-number": "^0.1.1",
+    "repeat-string": "^0.2.2"
   }
 }
