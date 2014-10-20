@@ -1,6 +1,6 @@
 # expand-range [![NPM version](https://badge.fury.io/js/expand-range.svg)](http://badge.fury.io/js/expand-range)
 
-> Expand a range of numbers or letters, uppercase or lowercase. Super fast, see the benchmarks.
+> Faster, bash-like range expansion. Expand a range of numbers or letters, uppercase or lowercase. See the benchmarks.
 
 ## Benchmarks
 

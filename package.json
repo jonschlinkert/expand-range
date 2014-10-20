@@ -1,6 +1,6 @@
 {
   "name": "expand-range",
-  "description": "Expand a range of numbers or letters, uppercase or lowercase. Super fast, see the benchmarks.",
+  "description": "Faster, bash-like range expansion. Expand a range of numbers or letters, uppercase or lowercase. See the benchmarks.",
   "version": "0.1.0",
   "homepage": "https://github.com/jonschlinkert/expand-range",
   "author": {
