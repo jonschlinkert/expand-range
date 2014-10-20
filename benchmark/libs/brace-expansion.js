@@ -1,7 +1,11 @@
 'use strict';
 
 /**
- *
+ * brace-expansion
  */
 
-module.exports = require('brace-expansion');
+var expand = require('brace-expansion');
+
+module.exports = function (str) {
+  return expand('{' + str + '}');
+};
