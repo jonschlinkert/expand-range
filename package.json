@@ -47,5 +47,8 @@
     "markdown",
     "templates",
     "verb"
-  ]
+  ],
+  "dependencies": {
+    "is-number": "^0.1.1"
+  }
 }

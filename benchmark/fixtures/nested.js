@@ -1,1 +1,1 @@
-module.exports = 'a{b,c{d,e},h}x/z';
+module.exports = 'a{b,c{1..9},h}x/z';

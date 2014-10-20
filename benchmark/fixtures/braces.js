@@ -1,1 +1,1 @@
-module.exports = 'a/b/c/{x,y}';
+module.exports = 'a/b/c/{1..5}';
