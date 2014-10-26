@@ -1,7 +1,7 @@
 {
   "name": "expand-range",
   "description": "Faster, bash-like range expansion. Expand a range of numbers or letters, uppercase or lowercase. See the benchmarks.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/jonschlinkert/expand-range",
   "author": {
     "name": "Jon Schlinkert",
@@ -30,6 +30,7 @@
   "devDependencies": {
     "benchmarked": "^0.1.1",
     "brace-expansion": "0.0.0",
+    "glob": "^4.0.6",
     "mocha": "*",
     "should": "^4.1.0",
     "verb": ">= 0.2.6",

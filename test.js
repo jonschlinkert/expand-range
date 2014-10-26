@@ -28,10 +28,26 @@ describe('expand range', function () {
     expand('A..E').should.eql(['A', 'B', 'C', 'D', 'E']);
   });
 
-  it('should use a custom function for expansions.', function () {
-    var range = expand('a..e', function (str, i) {
-      return String.fromCharCode(str) + i;
+  describe('when a custom function is used for expansions', function () {
+    it('should expose the actual character as the first param.', function () {
+      var range = expand('a..e', function (str, ch, i) {
+        return str;
+      });
+      range.should.eql(['a', 'b', 'c', 'd', 'e']);
     });
-    range.should.eql(['a0', 'b1', 'c2', 'd3', 'e4']);
+
+    it('should expose the charCode as the second param.', function () {
+      var range = expand('a..e', function (str, ch, i) {
+        return String.fromCharCode(ch);
+      });
+      range.should.eql(['a', 'b', 'c', 'd', 'e']);
+    });
+
+    it('should expose the index as the third param.', function () {
+      var range = expand('a..e', function (str, ch, i) {
+        return String.fromCharCode(ch) + i;
+      });
+      range.should.eql(['a0', 'b1', 'c2', 'd3', 'e4']);
+    });
   });
 });

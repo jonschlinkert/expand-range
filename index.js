@@ -41,7 +41,7 @@ function range(start, stop, special) {
 
   while (i++ < stop) {
     if (typeof special === 'function') {
-      arr.push(special(i, idx++));
+      arr.push(special(String.fromCharCode(i), i, idx++));
     } else if (typeof special === 'number') {
       arr.push(pad(i, special));
     } else if (special === 'alpha') {
