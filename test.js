@@ -57,7 +57,7 @@ describe('expand range', function () {
     expand('2..10..2').should.eql([ '2', '4', '6', '8', '10' ]);
     expand('2..10..1').should.eql([ '2', '3', '4', '5', '6', '7', '8', '9', '10' ]);
     expand('2..10..2').should.eql([ '2', '4', '6', '8', '10' ]);
-    expand('2...10...3').should.eql([ '2', '5', '8' ]);
+    expand('2..10..3').should.eql([ '2', '5', '8' ]);
   });
 
   it('should fill in negative ranges using the given increment', function () {
