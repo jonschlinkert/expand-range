@@ -27,14 +27,15 @@
   "scripts": {
     "test": "mocha -R spec"
   },
+  "dependencies": {
+    "fill-range": "^0.1.0"
+  },
   "devDependencies": {
     "benchmarked": "^0.1.1",
     "brace-expansion": "0.0.0",
     "glob": "^4.0.6",
     "mocha": "*",
-    "should": "^4.1.0",
-    "verb": ">= 0.2.6",
-    "verb-tag-jscomments": ">= 0.2.0"
+    "should": "^4.1.0"
   },
   "keywords": [
     "alpha",
@@ -52,9 +53,5 @@
     "range",
     "ranges",
     "sh"
-  ],
-  "dependencies": {
-    "is-number": "^0.1.1",
-    "repeat-string": "^0.2.2"
-  }
+  ]
 }
