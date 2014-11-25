@@ -17,4 +17,3 @@ module.exports = function expandRange(str, fn) {
 
   return fillRange.apply(fillRange, args.concat(fn));
 };
-
