@@ -17,10 +17,8 @@ describe('expand range', function () {
     expand('5..8').should.eql(['5', '6', '7', '8']);
   });
 
-  it('should honor padding', function () {
-    expand('00..05').should.eql(['00', '01', '02', '03', '04', '05']);
-    expand('01..03').should.eql(['01', '02', '03']);
-    expand('000..005').should.eql(['000', '001', '002', '003', '004', '005']);
+  it('should expand negative ranges', function () {
+    expand('0..-5').should.eql(['0', '-1', '-2', '-3', '-4', '-5']);
   });
 
   it('should expand alphabetical ranges', function () {
@@ -29,25 +27,31 @@ describe('expand range', function () {
   });
 
   describe('when a custom function is used for expansions', function () {
-    it('should expose the actual character as the first param.', function () {
-      var range = expand('a..e', function (str, ch, i) {
-        return str;
+    it('should expose the current value as the first param.', function () {
+      var res = expand('1..5', function (val, isLetter, i) {
+        return val;
       });
-      range.should.eql(['a', 'b', 'c', 'd', 'e']);
+      res.should.eql([1, 2, 3, 4, 5]);
     });
 
-    it('should expose the charCode as the second param.', function () {
-      var range = expand('a..e', function (str, ch, i) {
-        return String.fromCharCode(ch);
+    it('should expose the `isLetter` boolean as the second param.', function () {
+      var res = expand('a..e', function (val, isLetter, i) {
+        if (isLetter) {
+          return String.fromCharCode(val);
+        }
+        return val;
       });
-      range.should.eql(['a', 'b', 'c', 'd', 'e']);
+      res.should.eql(['a', 'b', 'c', 'd', 'e']);
     });
 
     it('should expose the index as the third param.', function () {
-      var range = expand('a..e', function (str, ch, i) {
-        return String.fromCharCode(ch) + i;
+      var res = expand('a..e', function (val, isLetter, i) {
+        if (isLetter) {
+          return String.fromCharCode(val) + i;
+        }
+        return val;
       });
-      range.should.eql(['a0', 'b1', 'c2', 'd3', 'e4']);
+      res.should.eql(['a0', 'b1', 'c2', 'd3', 'e4']);
     });
   });
 });
