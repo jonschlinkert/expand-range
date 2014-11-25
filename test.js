@@ -94,9 +94,9 @@ describe('expand range', function () {
   describe('when a custom function is used for expansions', function () {
     it('should expose the current value as the first param.', function () {
       var res = expand('1..5', function (val, isLetter, i) {
-        return val;
+        return String(val);
       });
-      res.should.eql([1, 2, 3, 4, 5]);
+      res.should.eql(['1', '2', '3', '4', '5']);
     });
 
     it('should expose the `isLetter` boolean as the second param.', function () {
