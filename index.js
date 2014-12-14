@@ -7,13 +7,14 @@
 
 'use strict';
 
-var fillRange = require('fill-range');
+var fill = require('fill-range');
 
 module.exports = function expandRange(str, fn) {
   var args = str.split('..');
-  if (args.length < 1) {
-    return str;
+
+  if (args.length === 1) {
+    return args;
   }
 
-  return fillRange.apply(fillRange, args.concat(fn));
+  return fill.apply(fill, args.concat(fn));
 };
