@@ -12,6 +12,10 @@ var expand = require('./');
 
 
 describe('expand range', function () {
+  it('should return the number as an array if no range is specified', function () {
+    expand('1').should.eql(['1']);
+  });
+
   it('should expand numerical ranges', function () {
     expand('1..3').should.eql(['1', '2', '3']);
     expand('5..8').should.eql(['5', '6', '7', '8']);
