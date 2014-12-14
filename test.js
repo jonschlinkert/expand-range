@@ -16,6 +16,12 @@ describe('expand range', function () {
     expand('1').should.eql(['1']);
   });
 
+  it('should throw when the first arg is not a string.', function () {
+    (function() {
+      expand();
+    }).should.throw('expand-range expects a string.')
+  });
+
   it('should expand numerical ranges', function () {
     expand('1..3').should.eql(['1', '2', '3']);
     expand('5..8').should.eql(['5', '6', '7', '8']);

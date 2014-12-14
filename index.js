@@ -10,10 +10,13 @@
 var fill = require('fill-range');
 
 module.exports = function expandRange(str, fn) {
-  var args = str.split('..');
+  if (typeof str !== 'string') {
+    throw new Error('expand-range expects a string.');
+  }
 
-  if (args.length === 1) {
-    return args;
+  var args = str.split('..');
+  if (args.length <= 1) {
+    return [str];
   }
 
   return fill.apply(fill, args.concat(fn));
