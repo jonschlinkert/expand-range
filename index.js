@@ -11,7 +11,7 @@ var fill = require('fill-range');
 
 module.exports = function expandRange(str, fn) {
   if (typeof str !== 'string') {
-    throw new Error('expand-range expects a string.');
+    throw new TypeError('expand-range expects a string.');
   }
 
   var args = str.split('..');
