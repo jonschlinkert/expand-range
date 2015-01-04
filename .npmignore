@@ -11,7 +11,5 @@ vendor
 
 # npmignore
 benchmark
-.gitattributes
-.jshintrc
-.verb.md
+.*
 test.js
