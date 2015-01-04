@@ -1,7 +1,7 @@
 /*!
  * expand-range <https://github.com/jonschlinkert/expand-range>
  *
- * Copyright (c) 2014 Jon Schlinkert, contributors.
+ * Copyright (c) 2014-2015, Jon Schlinkert.
  * Licensed under the MIT License
  */
 
@@ -103,15 +103,15 @@ describe('expand range', function () {
   });
   describe('when a custom function is used for expansions', function () {
     it('should expose the current value as the first param.', function () {
-      var res = expand('1..5', function (val, isLetter, i) {
+      var res = expand('1..5', function (val, isNumber, pad, i) {
         return String(val);
       });
       res.should.eql(['1', '2', '3', '4', '5']);
     });
 
-    it('should expose the `isLetter` boolean as the second param.', function () {
-      var res = expand('a..e', function (val, isLetter, i) {
-        if (isLetter) {
+    it('should expose the `isNumber` boolean as the third param.', function () {
+      var res = expand('a..e', function (val, isNumber, pad, i) {
+        if (!isNumber) {
           return String.fromCharCode(val);
         }
         return val;
@@ -119,9 +119,16 @@ describe('expand range', function () {
       res.should.eql(['a', 'b', 'c', 'd', 'e']);
     });
 
+    it('should expose any padding as the third param.', function () {
+      var res = expand('001..003', function (val, isNumber, pad, i) {
+        return pad + val;
+      });
+      res.should.eql(['001', '002', '003']);
+    });
+
     it('should expose the index as the third param.', function () {
-      var res = expand('a..e', function (val, isLetter, i) {
-        if (isLetter) {
+      var res = expand('a..e', function (val, isNumber, pad, i) {
+        if (!isNumber) {
           return String.fromCharCode(val) + i;
         }
         return val;

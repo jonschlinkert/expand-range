@@ -1,7 +1,7 @@
 /*!
  * expand-range <https://github.com/jonschlinkert/expand-range>
  *
- * Copyright (c) 2014 Jon Schlinkert, contributors.
+ * Copyright (c) 2014-2015, Jon Schlinkert.
  * Licensed under the MIT license.
  */
 
