@@ -1,1 +1,1 @@
-module.exports = '001..050';
+module.exports = ['001..050'];
