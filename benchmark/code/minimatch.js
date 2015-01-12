@@ -1,6 +1,6 @@
 'use strict';
 
-var expand = require('brace-expansion');
+var expand = require('minimatch').braceExpand;
 
 module.exports = function (str) {
   return expand('{' + str + '}');
