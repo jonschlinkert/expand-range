@@ -101,39 +101,78 @@ describe('expand range', function () {
     expand('a..e..2').should.eql(['a','c', 'e']);
     expand('E..A..2').should.eql(['E', 'C', 'A']);
   });
-  describe('when a custom function is used for expansions', function () {
-    it('should expose the current value as the first param.', function () {
-      var res = expand('1..5', function (val, isNumber, pad, i) {
-        return String(val);
-      });
-      res.should.eql(['1', '2', '3', '4', '5']);
-    });
+});
 
-    it('should expose the `isNumber` boolean as the third param.', function () {
-      var res = expand('a..e', function (val, isNumber, pad, i) {
-        if (!isNumber) {
-          return String.fromCharCode(val);
-        }
-        return val;
-      });
-      res.should.eql(['a', 'b', 'c', 'd', 'e']);
-    });
+describe('special characters:', function () {
+  it('should repeat the first arg `n` times:', function () {
+    expand('a..3..+').should.eql(['a', 'a', 'a']);
+    expand('abc..2..+').should.eql(['abc', 'abc']);
+    expand('a~~~b..5..+').should.eql(['a~~~b', 'a~~~b', 'a~~~b', 'a~~~b', 'a~~~b']);
+  });
 
-    it('should expose any padding as the third param.', function () {
-      var res = expand('001..003', function (val, isNumber, pad, i) {
-        return pad + val;
-      });
-      res.should.eql(['001', '002', '003']);
-    });
+  it('should collapse values when `>` is passed:', function () {
+    expand('a..e..>').should.eql(['abcde']);
+    expand('A..E..>').should.eql(['ABCDE']);
+    expand('E..A..>').should.eql(['EDCBA']);
+    expand('5..8..>').should.eql(['5678']);
+    expand('2..20..2>').should.eql(['2468101214161820']);
+    expand('2..20..>2').should.eql(['2468101214161820']);
+  });
 
-    it('should expose the index as the third param.', function () {
-      var res = expand('a..e', function (val, isNumber, pad, i) {
-        if (!isNumber) {
-          return String.fromCharCode(val) + i;
-        }
-        return val;
-      });
-      res.should.eql(['a0', 'b1', 'c2', 'd3', 'e4']);
+  it('should randomize using the first two args when `?` is passed:', function () {
+    expand('A0..5..?').should.match(/[\w\d]{5}/);
+    expand('A0..5..?').should.not.match(/[\w\d]{6}/);
+    expand('A..5..?').should.not.match(/\d{5}/);
+    expand('*..5..?').should.match(/.{5}/);
+    expand('aA0..10..?').should.match(/[^\W]{10}/);
+  });
+
+  it('should join the array using `|` as the separator:', function () {
+    expand('a..c..|').should.eql(['(a|b|c)']);
+    expand('a..e..2|').should.eql(['(a|c|e)']);
+    expand('a..e..|2').should.eql(['(a|c|e)']);
+  });
+});
+
+describe('when `makeRe` is truthy:', function () {
+  it('should return a string that can be used to make a regex:', function () {
+    expand('a..e', true).should.eql(['[a-e]']);
+    expand('E..A', true).should.eql(['[E-A]']);
+  });
+});
+
+describe('when a custom function is used for expansions', function () {
+  it('should expose the current value as the first param.', function () {
+    var res = expand('1..5', function (val, isNumber, pad, i) {
+      return String(val);
     });
+    res.should.eql(['1', '2', '3', '4', '5']);
+  });
+
+  it('should expose the `isNumber` boolean as the third param.', function () {
+    var res = expand('a..e', function (val, isNumber, pad, i) {
+      if (!isNumber) {
+        return String.fromCharCode(val);
+      }
+      return val;
+    });
+    res.should.eql(['a', 'b', 'c', 'd', 'e']);
+  });
+
+  it('should expose any padding as the third param.', function () {
+    var res = expand('001..003', function (val, isNumber, pad, i) {
+      return pad + val;
+    });
+    res.should.eql(['001', '002', '003']);
+  });
+
+  it('should expose the index as the third param.', function () {
+    var res = expand('a..e', function (val, isNumber, pad, i) {
+      if (!isNumber) {
+        return String.fromCharCode(val) + i;
+      }
+      return val;
+    });
+    res.should.eql(['a0', 'b1', 'c2', 'd3', 'e4']);
   });
 });
