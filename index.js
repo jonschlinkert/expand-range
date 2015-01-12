@@ -15,7 +15,24 @@ module.exports = function expandRange(str, fn) {
   }
 
   var args = str.split('..');
-  if (args.length <= 1) {
+  var len = args.length;
+  var makeRe;
+
+  if (typeof fn === 'boolean') {
+    makeRe = fn;
+    fn = null;
+  }
+
+  if (len === 2 && makeRe) {
+    return ['[' + args.join('-') + ']'];
+  }
+
+  if (len === 3 && makeRe) {
+    args[2] = args[2] + '|';
+    return fill.apply(fill, args);
+  }
+
+  if (len <= 1) {
     return [str];
   }
 
