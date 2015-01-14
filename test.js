@@ -128,9 +128,9 @@ describe('special characters:', function () {
   });
 
   it('should join the array using `|` as the separator:', function () {
-    expand('a..c..|').should.eql(['(a|b|c)']);
-    expand('a..e..2|').should.eql(['(a|c|e)']);
-    expand('a..e..|2').should.eql(['(a|c|e)']);
+    expand('a..c..|').should.eql(['(?:a|b|c)']);
+    expand('a..e..2|').should.eql(['(?:a|c|e)']);
+    expand('a..e..|2').should.eql(['(?:a|c|e)']);
   });
 });
 
