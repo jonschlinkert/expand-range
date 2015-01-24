@@ -128,16 +128,22 @@ describe('special characters:', function () {
   });
 
   it('should join the array using `|` as the separator:', function () {
-    expand('a..c..|').should.eql(['(?:a|b|c)']);
-    expand('a..e..2|').should.eql(['(?:a|c|e)']);
-    expand('a..e..|2').should.eql(['(?:a|c|e)']);
+    expand('a..c..|').should.eql(['[a-c]']);
+    expand('a..e..2|').should.eql(['(a|c|e)']);
+    expand('a..e..|2').should.eql(['(a|c|e)']);
   });
 });
 
-describe('when `makeRe` is truthy:', function () {
-  it('should return a string that can be used to make a regex:', function () {
+describe('character classes:', function () {
+  it('should return a string for a regex range when `true` is passed:', function () {
     expand('a..e', true).should.eql(['[a-e]']);
-    expand('E..A', true).should.eql(['[E-A]']);
+    expand('A..Z..5', true).should.eql(['(A|F|K|P|U|Z)']);
+    expand('E..A', true).should.eql(['(E|D|C|B|A)']);
+    expand('A..P', '5').should.eql(['A', 'F', 'K', 'P']);
+  });
+
+  it('should not make a character class when the range is out-of-order:', function () {
+    expand('1023..1021', true).should.eql(['(1023|1022|1021)']);
   });
 });
 
