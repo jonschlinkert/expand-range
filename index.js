@@ -14,26 +14,21 @@ module.exports = function expandRange(str, fn) {
     throw new TypeError('expand-range expects a string.');
   }
 
+  // create arguments to pass to fill-range
   var args = str.split('..');
   var len = args.length;
-  var makeRe;
 
-  if (typeof fn === 'boolean') {
-    makeRe = fn;
-    fn = null;
-  }
+  // if only one argument, it can't expand so return it
+  if (len === 1) { return args; }
 
-  if (len === 2 && makeRe) {
-    return ['[' + args.join('-') + ']'];
-  }
+  // if `true`, tell fill-range to regexify the string
+  if (typeof fn === 'boolean' && fn === true) {
+    fn = '~';
 
-  if (len === 3 && makeRe) {
-    args[2] = args[2] + '|';
-    return fill.apply(fill, args);
-  }
-
-  if (len <= 1) {
-    return [str];
+    if (len === 3) {
+      args[len - 1] += fn;
+      fn = null;
+    }
   }
 
   return fill.apply(fill, args.concat(fn));
