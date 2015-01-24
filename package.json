@@ -1,7 +1,7 @@
 {
   "name": "expand-range",
   "description": "Fast, bash-like range expansion. Expand a range of numbers or letters, uppercase or lowercase. See the benchmarks. Used by micromatch.",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "homepage": "https://github.com/jonschlinkert/expand-range",
   "author": {
     "name": "Jon Schlinkert",
@@ -25,8 +25,11 @@
   "scripts": {
     "test": "mocha -R spec"
   },
+  "files": [
+    "index.js"
+  ],
   "dependencies": {
-    "fill-range": "^1.4.0"
+    "fill-range": "^1.6.0"
   },
   "devDependencies": {
     "benchmarked": "^0.1.1",
