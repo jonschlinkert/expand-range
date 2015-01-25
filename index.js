@@ -9,12 +9,23 @@
 
 var fill = require('fill-range');
 
-module.exports = function expandRange(str, fn) {
+module.exports = function expandRange(str, options, fn) {
   if (typeof str !== 'string') {
     throw new TypeError('expand-range expects a string.');
   }
 
+  if (typeof options === 'function') {
+    fn = options;
+    options = {};
+  }
+
+  if (typeof options === 'boolean') {
+    options = {};
+    options.makeRe = true;
+  }
+
   // create arguments to pass to fill-range
+  var opts = options || {};
   var args = str.split('..');
   var len = args.length;
 
@@ -23,13 +34,9 @@ module.exports = function expandRange(str, fn) {
 
   // if `true`, tell fill-range to regexify the string
   if (typeof fn === 'boolean' && fn === true) {
-    fn = '~';
-
-    if (len === 3) {
-      args[len - 1] += fn;
-      fn = null;
-    }
+    opts.makeRe = true;
   }
 
+  args.push(opts);
   return fill.apply(fill, args.concat(fn));
 };
