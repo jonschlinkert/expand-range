@@ -137,13 +137,42 @@ describe('special characters:', function () {
 describe('character classes:', function () {
   it('should return a string for a regex range when `true` is passed:', function () {
     expand('a..e', true).should.eql(['[a-e]']);
+    expand('0..9', true).should.eql(['[0-9]']);
     expand('A..Z..5', true).should.eql(['(A|F|K|P|U|Z)']);
     expand('E..A', true).should.eql(['(E|D|C|B|A)']);
-    expand('A..P', '5').should.eql(['A', 'F', 'K', 'P']);
   });
 
-  it('should not make a character class when the range is out-of-order:', function () {
+  it('should return a string for a regex when `~` or `|` are passed:', function () {
+    expand('A..P', '~5').should.eql(['(A|F|K|P)']);
+  });
+
+  it('should make a logical or when the range is out-of-order:', function () {
+    expand('c..a', '~').should.eql(['(c|b|a)']);
+    expand('c..a', '|').should.eql(['(c|b|a)']);
     expand('1023..1021', true).should.eql(['(1023|1022|1021)']);
+    expand('1..10', '~').should.eql(['(1|2|3|4|5|6|7|8|9|10)']);
+  });
+
+  it('should prefix the regex string when a `prefix` is passed on options:', function () {
+    expand('c..a', '~', {regexPrefix: '?!'}).should.eql(['(?!c|b|a)']);
+    expand('1..10', '~', {regexPrefix: '?:'}).should.eql(['(?:1|2|3|4|5|6|7|8|9|10)']);
+  });
+
+  it('should return null for bad patterns:', function () {
+    (expand('1.1..2.1') == null).should.be.true;
+    (expand('1.2..2') == null).should.be.true;
+    (expand('1.20..2') == null).should.be.true;
+    (expand('1..0f') == null).should.be.true;
+    (expand('1..10..ff') == null).should.be.true;
+    (expand('1..10.f') == null).should.be.true;
+    (expand('1..10f') == null).should.be.true;
+    (expand('1..20..2f') == null).should.be.true;
+    (expand('1..20..f2') == null).should.be.true;
+    (expand('1..2f..2') == null).should.be.true;
+    (expand('1..ff..2') == null).should.be.true;
+    (expand('1..ff') == null).should.be.true;
+    (expand('1..f') == null).should.be.true;
+    (expand('f..1') == null).should.be.true;
   });
 });
 
