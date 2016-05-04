@@ -14,10 +14,7 @@
   "bugs": {
     "url": "https://github.com/jonschlinkert/expand-range/issues"
   },
-  "license": {
-    "type": "MIT",
-    "url": "https://github.com/jonschlinkert/expand-range/blob/master/LICENSE-MIT"
-  },
+  "license": "MIT",
   "main": "index.js",
   "engines": {
     "node": ">=0.10.0"
