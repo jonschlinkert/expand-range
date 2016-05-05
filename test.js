@@ -158,7 +158,11 @@ describe('character classes:', function () {
     expand('1..10', '~', {regexPrefix: '?:'}).should.eql(['(?:1|2|3|4|5|6|7|8|9|10)']);
   });
 
-  it('should return null for bad patterns:', function () {
+  it('should return the string when arguments are invalid:', function () {
+    expand('1..1..2..1').should.equal('1..1..2..1');
+  });
+
+  it('should return null for invalid patterns:', function () {
     (expand('1.1..2.1') == null).should.be.true;
     (expand('1.2..2') == null).should.be.true;
     (expand('1.20..2') == null).should.be.true;

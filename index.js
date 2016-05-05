@@ -28,6 +28,7 @@ module.exports = function expandRange(str, options, fn) {
   var opts = options || {};
   var args = str.split('..');
   var len = args.length;
+  if (len > 3) { return str; }
 
   // if only one argument, it can't expand so return it
   if (len === 1) { return args; }
