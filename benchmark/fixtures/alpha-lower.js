@@ -1,1 +1,1 @@
-module.exports = ['a..d'];
+module.exports = [['a..d']];

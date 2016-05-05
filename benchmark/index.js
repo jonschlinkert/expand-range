@@ -2,10 +2,14 @@
 
 var Suite = require('benchmarked');
 var suite = new Suite({
-  result: false,
   fixtures: 'fixtures/*.js',
-  add: 'code/*.js',
+  code: 'code/*.js',
   cwd: __dirname
 });
 
 suite.run();
+// suite.dryRun(function(code, fixture) {
+//   console.log();
+//   console.log(code.key);
+//   console.log('[' + code.run.apply(code, fixture.content).join(',') + ']');
+// });

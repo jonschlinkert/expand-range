@@ -1,22 +1,19 @@
-#1: alpha-lower.js
-  brace-expansion.js x 143,605 ops/sec ±1.29% (90 runs sampled)
-  expand-range.js x 638,761 ops/sec ±0.84% (93 runs sampled)
-  minimatch.js x 153,308 ops/sec ±1.85% (89 runs sampled)
+# benchmark/fixtures/alpha-lower.js (29 bytes)
+  brace-expansion x 145,653 ops/sec ±0.89% (87 runs sampled)
+  expand-range x 453,213 ops/sec ±1.66% (85 runs sampled)
+  minimatch x 152,193 ops/sec ±1.17% (86 runs sampled)
 
-  fastest is expand-range.js
-#2: alpha-upper.js
-  brace-expansion.js x 126,557 ops/sec ±1.44% (93 runs sampled)
-  expand-range.js x 629,623 ops/sec ±0.69% (98 runs sampled)
-  minimatch.js x 150,907 ops/sec ±1.70% (88 runs sampled)
+# benchmark/fixtures/alpha-upper.js (29 bytes)
+  brace-expansion x 149,975 ops/sec ±1.10% (88 runs sampled)
+  expand-range x 459,390 ops/sec ±1.27% (84 runs sampled)
+  minimatch x 155,253 ops/sec ±1.25% (88 runs sampled)
 
-  fastest is expand-range.js
-#3: padded.js
-  brace-expansion.js x 15,636 ops/sec ±0.95% (95 runs sampled)
-  expand-range.js x 159,127 ops/sec ±1.01% (95 runs sampled)
-  minimatch.js x 13,951 ops/sec ±0.80% (98 runs sampled)
+# benchmark/fixtures/padded.js (33 bytes)
+  brace-expansion x 14,694 ops/sec ±1.37% (85 runs sampled)
+  expand-range x 169,393 ops/sec ±1.76% (80 runs sampled)
+  minimatch x 15,052 ops/sec ±1.15% (88 runs sampled)
 
-  fastest is expand-range.js
-#4: range.js
-  brace-expansion.js x 137,550 ops/sec ±1.87% (91 runs sampled)
-  expand-range.js x 539,852 ops/sec ±0.83% (97 runs sampled)
-  minimatch.js x 119,192 ops/sec ±1.77% (91 runs sampled)
+# benchmark/fixtures/range.js (29 bytes)
+  brace-expansion x 142,968 ops/sec ±1.35% (86 runs sampled)
+  expand-range x 465,579 ops/sec ±1.43% (86 runs sampled)
+  minimatch x 126,872 ops/sec ±1.18% (90 runs sampled)
