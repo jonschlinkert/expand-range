@@ -4,6 +4,10 @@
   "version": "1.8.2",
   "homepage": "https://github.com/jonschlinkert/expand-range",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "contributors": [
+    "Daniel Cohen (http://dcb.co.il)",
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)"
+  ],
   "repository": "jonschlinkert/expand-range",
   "bugs": {
     "url": "https://github.com/jonschlinkert/expand-range/issues"
@@ -64,9 +68,9 @@
     ],
     "related": {
       "list": [
-        "micromatch",
+        "braces",
         "fill-range",
-        "braces"
+        "micromatch"
       ]
     }
   }

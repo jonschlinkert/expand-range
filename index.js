@@ -1,8 +1,8 @@
 /*!
  * expand-range <https://github.com/jonschlinkert/expand-range>
  *
- * Copyright (c) 2014-2015, Jon Schlinkert.
- * Licensed under the MIT license.
+ * Copyright (c) 2014-2015, 2017, Jon Schlinkert.
+ * Released under the MIT License.
  */
 
 'use strict';
