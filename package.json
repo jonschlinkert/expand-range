@@ -1,6 +1,6 @@
 {
   "name": "expand-range",
-  "description": "Fast, bash-like range expansion. Expand a range of numbers or letters, uppercase or lowercase. See the benchmarks. Used by micromatch.",
+  "description": "Fast, bash-like range expansion. Expand a range of numbers or letters, uppercase or lowercase. Used by [micromatch].",
   "version": "1.8.2",
   "homepage": "https://github.com/jonschlinkert/expand-range",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
@@ -24,15 +24,15 @@
     "test": "mocha"
   },
   "dependencies": {
-    "fill-range": "^2.1.0"
+    "fill-range": "^4.0.0"
   },
   "devDependencies": {
-    "benchmarked": "^0.2.4",
-    "brace-expansion": "^1.1.4",
-    "glob": "^7.0.3",
-    "gulp-format-md": "^0.1.9",
-    "minimatch": "^3.0.0",
-    "mocha": "^2.4.5"
+    "benchmarked": "^1.1.1",
+    "brace-expansion": "^1.1.7",
+    "glob": "^7.1.1",
+    "gulp-format-md": "^0.1.12",
+    "minimatch": "^3.0.4",
+    "mocha": "^3.3.0"
   },
   "keywords": [
     "alpha",
@@ -56,7 +56,9 @@
       "gulp-format-md"
     ],
     "reflinks": [
-      "verb"
+      "verb",
+      "fill-range",
+      "micromatch"
     ],
     "toc": false,
     "layout": "default",

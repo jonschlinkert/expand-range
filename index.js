@@ -7,6 +7,7 @@
 
 'use strict';
 
+var extend = require('extend-shallow');
 var fill = require('fill-range');
 
 module.exports = function expandRange(str, options, fn) {
@@ -16,28 +17,38 @@ module.exports = function expandRange(str, options, fn) {
 
   if (typeof options === 'function') {
     fn = options;
-    options = {};
+    options = undefined;
+  }
+
+  // shallow clone options, to ensure we
+  // don't mutate the object upstream
+  var opts = extend({}, options);
+
+  if (typeof fn === 'function') {
+    opts.transform = fn;
   }
 
   if (typeof options === 'boolean') {
-    options = {};
-    options.makeRe = true;
-  }
-
-  // create arguments to pass to fill-range
-  var opts = options || {};
-  var args = str.split('..');
-  var len = args.length;
-  if (len > 3) { return str; }
-
-  // if only one argument, it can't expand so return it
-  if (len === 1) { return args; }
-
-  // if `true`, tell fill-range to regexify the string
-  if (typeof fn === 'boolean' && fn === true) {
     opts.makeRe = true;
   }
 
-  args.push(opts);
-  return fill.apply(null, args.concat(fn));
+  // create arguments to pass to fill-range
+  var segs = str.split('..');
+  var len = segs.length;
+  if (len > 3) { return str; }
+
+  // if only one segment, it can't expand so return it
+  if (len === 1) { return segs; }
+
+  // if fn is "true", tell fill-range to regexify the string
+  if (fn === true) {
+    opts.toRegex = true;
+    fn = undefined;
+  }
+
+  // wrap the result in parentheses, when regexified and necessary
+  opts.capture = true;
+  segs.push(opts);
+
+  return fill.apply(null, segs);
 };
